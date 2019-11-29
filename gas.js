@@ -20,15 +20,11 @@ function gaussModel(p) {
     let res = []
     let xlen = 1
     let ylen = 1
-
     let t = 0.5
     let Q = 1
     let sig = diffCoeffient(pasStabClass(u, 'Day', 'sunshine'))
-
     for (let x = -1; x < 1; x += 0.02) {
-
         for (let y = -1; y < 1; y += 0.02) {
-
             if ((1 + 0.0004 * x) < 0 || (1 + sig[2] * x) < 0) {
                 res.push([x * 100, y * 100, 0])
                 continue
@@ -36,9 +32,9 @@ function gaussModel(p) {
             let sigx = sig[0] * x * Math.sqrt(1 + 0.0004 * x)
             let sigy = sigx
             let sigz = sig[1] * x * Math.sqrt(1 + sig[2] * x)
-            let c = 2 * Q / ((2 * Math.PI) ** 1.5 * sigx * sigy * sigz)
-                * Math.E ** (-1 * y ** 2 / (2 * sigy ** 2))
-                * Math.E ** (-1 * (x - u * t) ** 2 / (2 * sigx ** 2))
+            let c = 2 * Q / ((2 * Math.PI) ** 1.5 * sigx * sigy * sigz) *
+                Math.E ** (-1 * y ** 2 / (2 * sigy ** 2)) *
+                Math.E ** (-1 * (x - u * t) ** 2 / (2 * sigx ** 2))
             res.push([Math.round(x * 50), Math.round(y * 50), c > 0 ? c : 0])
         }
 

@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const gas = require('./gas.js') //引入气体扩散模块
-
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
@@ -16,12 +15,9 @@ var allowCors = function(req, res, next) {
 };
 app.use(allowCors); //使用跨域中间件
 
-
-
 app.get('/', (req, res) => {
     res.send('Hello World get!')
 })
-
 
 app.post('/', (req, res) => {
     let parm = req.body
@@ -30,7 +26,6 @@ app.post('/', (req, res) => {
     console.log(result.length)
     res.send(result)
 })
-
 
 app.listen(3000, () => console.log('Example app listening on port 3000 hello!' +
     '  ' + gas.value(2) + ' ' + gas.pasStabClass(4.5, 'Day', 'overcast'), 2 ** 3 * 2))
