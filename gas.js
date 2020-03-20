@@ -3,25 +3,33 @@ function value(n) {
 }
 
 function gridValue(parm) {
-    console.log(parm.u)
+    // console.log(parm.u)
     return gaussModel(parm)
 }
 
 //高斯模型
 //参数： p{}
+/**
+ * u: m/s
+ * v: m/s
+ * t: s
+ * Q: kg/s
+ */
 function gaussModel(p) {
     // let sigx = 1, sigy = 1, sigz = 1, y = 1
     let uv = p.u
     let vv = p.v
+    let Q = p.quality
+    let t = p.t
     let u = Math.sqrt(uv ** 2 + vv ** 2)
     let sina = vv / u
     let cosa = uv / u
-    console.log(u)
     let res = []
     let xlen = 1
     let ylen = 1
-    let t = 0.5
-    let Q = 1
+        // 写死了
+        // let t = 0.5
+        // let Q = 1
     let sig = diffCoeffient(pasStabClass(u, 'Day', 'sunshine'))
     for (let x = -1; x < 1; x += 0.02) {
         for (let y = -1; y < 1; y += 0.02) {
